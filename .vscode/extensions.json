@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "Vue.volar",
+    "antfu.unocss",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint",
+    "antfu.iconify",
+    "Lokalise.i18n-ally",
+    "mikestead.dotenv",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag"
+  ]
+}

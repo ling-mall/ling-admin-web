@@ -1,0 +1,37 @@
+.dark {
+  background-color: #242424;
+}
+
+html {
+  overflow: hidden;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #10b981;
+}
+
+a:focus,
+a:active,
+button,
+div,
+svg,
+span {
+  outline: none;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  color: #2c3e50;
+}
