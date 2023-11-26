@@ -1,8 +1,8 @@
 /**
- * 一个为index.html提供minify和基于EJS模板功能的Vite插件。
- * 项目地址: https://github.com/anncwb/vite-plugin-html
- * minify：压缩index.html代码
- * EJS：给index.html提供访问变量的能力
+ * 一个为 index.html 提供 minify 和基于 EJS 模板功能的 Vite 插件。
+ * 项目地址：https://github.com/anncwb/vite-plugin-html
+ * minify：压缩 index.html 代码
+ * EJS：给 index.html 提供访问变量的能力
  */
 import type { PluginOption } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
@@ -21,14 +21,14 @@ export function configHtmlPlugin(env: ViteEnv, isBuild: boolean) {
   }
 
   const htmlPlugin: PluginOption[] = createHtmlPlugin({
-    // 如果是开发环境则不压缩index.html的代码
+    // 如果是开发环境则不压缩 index.html 的代码
     minify: isBuild,
     inject: {
-      // 将数据注入ejs模板
+      // 将数据注入 ejs 模板
       data: {
         title: VITE_GLOB_APP_TITLE
       },
-      // 如果是生产环境则嵌入生成的app.config.js文件
+      // 如果是生产环境则嵌入生成的 app.config.js 文件
       tags: isBuild
         ? [
             {

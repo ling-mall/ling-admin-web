@@ -49,15 +49,8 @@ export default defineConfig(({ command, mode }) => {
       target: 'es2015',
       // 指定输出路径（相对于项目根目录)
       outDir: 'dist',
-      terserOptions: {
-        // 默认{}-通过 false 以完全跳过压缩。传递一个对象以指定自定义压缩选项
-        compress: {
-          // 默认值：false）- 通过 true 以防止 Infinity 被压缩为 1/0，这可能会导致 Chrome 出现性能问题。
-          keep_infinity: true,
-          // 在生产环境中删除 console
-          drop_console: VITE_DROP_CONSOLE
-        }
-      },
+      // 最小化混淆，压缩
+      minify: VITE_DROP_CONSOLE,
       // chunk 大小警告的限制（以 kbs 为单位）。
       chunkSizeWarningLimit: 2000
     },
