@@ -23,6 +23,7 @@ export function configHtmlPlugin(env: ViteEnv, isBuild: boolean) {
   const htmlPlugin: PluginOption[] = createHtmlPlugin({
     // 如果是开发环境则不压缩 index.html 的代码
     minify: isBuild,
+    entry: 'src/main.ts',
     inject: {
       // 将数据注入 ejs 模板
       data: {
