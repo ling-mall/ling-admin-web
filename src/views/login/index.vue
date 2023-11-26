@@ -78,14 +78,14 @@
 </template>
 <script></script>
 <script lang="ts" setup>
-  import { getRedirectUrl } from '@/api/sso'
+  import { getRedirectUrl, doLogin } from '@/api/sso'
   import { FieldRule } from '@arco-design/web-vue'
 
   defineOptions({ name: 'LoginPage' })
 
   const form = ref({
-    username: '',
-    password: '',
+    username: 'zhong',
+    password: '12345678',
     isRememberMe: false,
     verificationCode: ''
   })
@@ -107,6 +107,11 @@
 
   const handleSubmit = ({ values, errors }) => {
     console.log('values:', values, '\nerrors:', errors)
+    if (!errors) {
+      doLogin(form.value).then((r) => {
+        console.log(r)
+      })
+    }
   }
 
   onMounted(() => {
