@@ -18,13 +18,14 @@ const transformResponseHook = (res: AxiosResponse<Result>, options: RequestOptio
     return res
   }
 
-  // 不进行任何处理，直接返回。用于页面代码可能需要直接获取 code，data，message 这些信息时开启
+  // 不进行任何处理，直接返回。用于页面代码可能需要直接获取 code，result，message 这些信息时开启
   const { isTransformResponse } = options
   if (!isTransformResponse) {
     return res.data
   }
 
   // 其他对结果的处理
+  return res.data.result
 }
 
 /** 请求前的钩子，处理 config*/
