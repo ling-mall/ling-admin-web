@@ -1,5 +1,4 @@
-import { defineConfig } from 'vite'
-import { loadEnv } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 // ↓加载 node 的 path 模块
 import { resolve } from 'path'
 
@@ -54,6 +53,12 @@ export default defineConfig(({ command, mode }) => {
       // chunk 大小警告的限制（以 kbs 为单位）。
       chunkSizeWarningLimit: 2000
     },
-    css: {}
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/design/element/index.scss" as *;`
+        }
+      }
+    }
   }
 })

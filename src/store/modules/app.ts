@@ -31,7 +31,6 @@ export const useAppStore = defineStore({
   actions: {
     /**设置主题 */
     setTheme(mode: ThemeEnum | string): void {
-      console.log(mode)
       this.theme = mode
       const isDark = useDark()
       switch (mode) {
@@ -46,15 +45,6 @@ export const useAppStore = defineStore({
           isDark.value = false
           break
       }
-    },
-    /** 切换主题 */
-    toggleTheme(): void {
-      const nextTheme = new Map()
-      nextTheme.set(ThemeEnum.DARK, ThemeEnum.LIGHT)
-      nextTheme.set(ThemeEnum.LIGHT, ThemeEnum.SYSTEM)
-      nextTheme.set(ThemeEnum.SYSTEM, ThemeEnum.DARK)
-
-      this.setTheme(nextTheme.get(this.getTheme))
     }
   }
 })

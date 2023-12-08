@@ -1,11 +1,12 @@
 <template>
   <div class="w-full h-full">
-    <el-date-picker v-model="value1" type="Date" placeholder="Pick a day" />
+    <DarkToggle v-slot="{ toggle }">
+      <el-button @click="toggle" type="primary">aaa</el-button>
+    </DarkToggle>
   </div>
 </template>
 
-<script setup lang="ts">
-  const value1 = ref('')
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>
+'base': $primary-color
