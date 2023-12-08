@@ -9,7 +9,6 @@ import { setupRouter } from './router'
 import '@purge-icons/generated'
 import 'virtual:svg-icons-register'
 
-import '@arco-design/web-vue/dist/arco.css'
 import { setupI18n } from './locales/setupI18n'
 
 const app = createApp(App)

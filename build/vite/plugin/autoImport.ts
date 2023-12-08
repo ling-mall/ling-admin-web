@@ -1,10 +1,10 @@
 import AutoImport from 'unplugin-auto-import/vite'
 import { PluginOption } from 'vite'
-import { ArcoResolver } from 'unplugin-vue-components/resolvers'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 export function autoImportPlugin() {
   const autoImportPlugin: PluginOption = AutoImport({
-    resolvers: [ArcoResolver()],
+    resolvers: [ElementPlusResolver()],
     // 声明文件生成位置和文件名称
     dts: 'types/auto-imports.d.ts',
     // 目标文件
