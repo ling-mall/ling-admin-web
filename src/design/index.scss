@@ -1,9 +1,8 @@
-.dark {
-  background-color: #242424;
-}
+// element 黑暗模式
+@import 'element-plus/theme-chalk/dark/css-vars.css';
 
-html {
-  overflow: hidden;
+.a {
+  background-color: #fff;
 }
 
 html,
@@ -18,7 +17,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #10b981;
+  color: inherit;
 }
 
 a:focus,
@@ -33,5 +32,27 @@ span {
 #app {
   height: 100%;
   width: 100%;
-  color: #2c3e50;
+}
+
+/* Color Mode transition */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2147483646;
+}
+
+.dark::view-transition-old(root) {
+  z-index: 2147483646;
+}
+
+.dark::view-transition-new(root) {
+  z-index: 1;
 }

@@ -24,23 +24,8 @@ module.exports = {
       }
     ],
     // ↓禁止使用未知规则。
-    'at-rule-no-unknown': [
-      true,
-      {
-        ignoreAtRules: [
-          'tailwind',
-          'apply',
-          'variants',
-          'responsive',
-          'screen',
-          'function',
-          'if',
-          'each',
-          'include',
-          'mixin'
-        ]
-      }
-    ],
+    'at-rule-no-unknown': null,
+    'scss/at-rule-no-unknown': true,
     // ↓禁止空来源。
     'no-empty-source': null,
     // ↓禁止使用无效的命名网格区域。
@@ -105,5 +90,7 @@ module.exports = {
         ]
       }
     }
-  ]
+  ],
+  'scss/dollar-variable-pattern': '^foo',
+  'scss/selector-no-redundant-nesting-selector': true
 }

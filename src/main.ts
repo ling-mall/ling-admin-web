@@ -2,7 +2,6 @@ import App from './App.vue'
 
 import 'virtual:uno.css'
 import '@/design/index.scss'
-
 import { initAppConfigStore } from './logics/initAppConfig'
 import { setupRouter } from './router'
 
