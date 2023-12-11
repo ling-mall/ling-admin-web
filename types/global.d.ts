@@ -3,8 +3,7 @@ import type {
   VNode,
   VNodeChild,
   ComponentPublicInstance,
-  FunctionalComponent,
-  PropType as VuePropType
+  FunctionalComponent
 } from 'vue'
 
 declare global {
@@ -18,8 +17,6 @@ declare global {
     lastBuildTime: string
   }
 
-  // vue
-  declare type PropType<T> = VuePropType<T>
   declare type VueNode = VNodeChild | JSX.Element
 
   export type Writable<T> = {
