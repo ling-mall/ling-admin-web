@@ -8,7 +8,9 @@ const setting: ProjectConfig = {
     fixed: true,
     siderHidden: false,
     show: true,
-    bgColor: '#34495e'
+    bgColor: '#001529',
+    textColor: '#ffffff',
+    activeTextColor: '#ffffff'
   }
 }
 

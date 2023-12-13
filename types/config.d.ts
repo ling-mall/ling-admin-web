@@ -34,6 +34,8 @@ export interface ProjectConfig {
 
 export interface MenuSetting {
   bgColor: string
+  textColor: string
+  activeTextColor: string
   fixed: boolean
   siderHidden: boolean
   show: boolean

@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-row">
     <DefaultLayoutSider />
-    <DefaultLayoutHeader />
+    <div class="flex flex-col flex-1">
+      <DefaultLayoutHeader />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
