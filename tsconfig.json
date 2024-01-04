@@ -46,7 +46,8 @@
     "paths": {
       "@/*": ["src/*"],
       "#/*": ["types/*"]
-    }
+    },
+    "isolatedModules": true
   },
   // 指定一个匹配列表（属于自动指定该路径下的所有 ts 相关文件）
   "include": [
