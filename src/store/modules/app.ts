@@ -1,9 +1,11 @@
+import { ProjectConfig } from '#/config'
 import { ThemeEnum } from '@/enums/appEnum'
 import setting from '@/settings/projectSetting'
 import { Ref } from 'vue'
 
 interface AppState {
   theme?: ThemeEnum | string
+  projectConfig: ProjectConfig
 }
 
 export const useAppStore = defineStore({
@@ -13,7 +15,8 @@ export const useAppStore = defineStore({
     storage: localStorage
   },
   state: (): AppState => ({
-    theme: undefined
+    theme: undefined,
+    projectConfig: setting
   }),
   getters: {
     /**
@@ -26,6 +29,9 @@ export const useAppStore = defineStore({
     /** 获取当前宽度是否属于移动端 */
     getIsMobile(): Ref<boolean> {
       return useBreakpoints(screenObj).smaller(sizeEnum.LG)
+    },
+    getProjectConfig(): ProjectConfig | null {
+      return this.projectConfig
     }
   },
   actions: {
@@ -45,6 +51,9 @@ export const useAppStore = defineStore({
           isDark.value = false
           break
       }
+    },
+    setMenuWidth(width: number): void {
+      this.projectConfig.menuSetting.menuWidth = width
     }
   }
 })

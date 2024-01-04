@@ -20,6 +20,7 @@ export function autoImportPlugin() {
       'pinia',
       'vue-i18n',
       '@vueuse/core',
+      'vue-router',
       {
         axios: [
           // default imports

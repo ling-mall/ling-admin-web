@@ -1,17 +1,12 @@
 <template>
-  <div class="w-full h-full">
-    <DarkToggle v-slot="{ toggle }">
-      <el-button @click="toggle" type="primary">aaa</el-button>
-    </DarkToggle>
-    {{ color }}
-    <el-color-picker v-model="color" />
+  <!-- <RouterView /> -->
+  <div class="mt-4 ml-4">
+    <Button label="Submit" severity="success" />
   </div>
 </template>
 
 <script setup lang="ts">
-  import { useElementPlusTheme } from './hooks/useElementPlusTheme'
-
-  const { color } = useElementPlusTheme()
+  import Button from 'primevue/button'
 </script>
 
 <style scoped></style>

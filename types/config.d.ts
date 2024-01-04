@@ -28,6 +28,18 @@ export interface GlobConfig {
 export interface ProjectConfig {
   /** 默认主题*/
   defaultTheme: ThemeEnum
+  /** 菜单设置 */
+  menuSetting: MenuSetting
+}
+
+export interface MenuSetting {
+  bgColor: string
+  textColor: string
+  activeTextColor: string
+  fixed: boolean
+  siderHidden: boolean
+  show: boolean
+  menuWidth: number
 }
 
 /** 语言类型 */

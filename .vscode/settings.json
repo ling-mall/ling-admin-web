@@ -7,9 +7,8 @@
   //每次保存自动格式化
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    // 文件保存时开启 eslint 自动修复程序
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -60,7 +59,7 @@
   },
   "[vue]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
+      "source.fixAll.eslint": "explicit"
     },
     "editor.formatOnSave": true
   },
@@ -86,5 +85,10 @@
     "comments": true,
     "strings": true
   },
-  "i18n-ally.localesPaths": ["src/locales", "src/locales/lang"]
+  "i18n-ally.localesPaths": ["src/locales", "src/locales/lang"],
+  "[css][less][scss]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "explicit"
+    }
+  }
 }

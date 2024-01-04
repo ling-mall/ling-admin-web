@@ -46,7 +46,8 @@
     "paths": {
       "@/*": ["src/*"],
       "#/*": ["types/*"]
-    }
+    },
+    "isolatedModules": true
   },
   // 指定一个匹配列表（属于自动指定该路径下的所有 ts 相关文件）
   "include": [
@@ -62,6 +63,7 @@
   // 指定一个排除列表（include 的反向操作））
   "exclude": ["node_modules", "dist", "**/*.js"],
   "vueCompilerOptions": {
+    "target": 3,
     "plugins": [
       "@vue-macros/volar/define-options",
       "@vue-macros/volar/define-models",
@@ -70,10 +72,10 @@
       "@vue-macros/volar/short-vmodel",
       "@vue-macros/volar/define-slots",
       "@vue-macros/volar/jsx-directive",
-      "@vue-macros/volar/setup-jsdoc"
+      "@vue-macros/volar/setup-jsdoc",
 
       // 选择以下其中一个
-      // "@vue-macros/volar/export-expose",
+      "@vue-macros/volar/export-expose"
       // "@vue-macros/volar/export-props",
       // "@vue-macros/volar/export-render",
     ]
