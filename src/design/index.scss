@@ -1,8 +1,13 @@
 // element 黑暗模式
 @import 'element-plus/theme-chalk/dark/css-vars.css';
+@import './variable.css';
 
 .a {
   background-color: #fff;
+}
+
+html {
+  font-size: 14px;
 }
 
 html,

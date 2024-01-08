@@ -1,7 +1,7 @@
 <template>
   <!-- <RouterView /> -->
   <div class="mt-4 ml-4">
-    <Button label="Submit" severity="success" />
+    <Button label="Submit" />
   </div>
 </template>
 

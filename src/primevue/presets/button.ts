@@ -1,3 +1,6 @@
+import { ButtonPassThroughOptions } from 'primevue/button'
+import { PassThrough } from 'primevue/ts-helpers'
+
 export default {
   root: ({ props, context, parent }) => ({
     class: [
@@ -327,4 +330,4 @@ export default {
   badge: ({ props }) => ({
     class: [{ 'ml-2 w-4 h-4 leading-none flex items-center justify-center': props.badge }]
   })
-}
+} as PassThrough<ButtonPassThroughOptions<any>>

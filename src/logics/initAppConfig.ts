@@ -10,4 +10,13 @@ export function initAppConfigStore() {
       appStore.setTheme(ThemeEnum.SYSTEM)
     }
   })
+
+  const themeColors = appStore.getProjectConfig.theme.colors
+
+  document.documentElement.style.setProperty(ThemeColorsVarName.PRIMARY, themeColors.primary)
+  document.documentElement.style.setProperty(ThemeColorsVarName.SECONDARY, themeColors.secondary)
+  document.documentElement.style.setProperty(ThemeColorsVarName.SUCCESS, themeColors.success)
+  document.documentElement.style.setProperty(ThemeColorsVarName.DANGER, themeColors.danger)
+  document.documentElement.style.setProperty(ThemeColorsVarName.WARNING, themeColors.warning)
+  document.documentElement.style.setProperty(ThemeColorsVarName.INFO, themeColors.info)
 }
