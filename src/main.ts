@@ -9,8 +9,7 @@ import { setupPrimeVue } from './primevue'
 import '@purge-icons/generated'
 import 'virtual:svg-icons-register'
 
-import '@unocss/reset/sanitize/sanitize.css'
-import '@unocss/reset/sanitize/assets.css'
+import '@unocss/reset/tailwind-compat.css'
 // import 'primevue/resources/themes/lara-light-green/theme.css'
 
 import { setupI18n } from './locales/setupI18n'

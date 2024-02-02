@@ -1,3 +1,5 @@
+import { hexToRgb } from '@/utils/index'
+
 export function initAppConfigStore() {
   const appStore = useAppStoreWithOut()
 
@@ -11,12 +13,26 @@ export function initAppConfigStore() {
     }
   })
 
+  // 设置项目的主题颜色css变量
   const themeColors = appStore.getProjectConfig.theme.colors
+  const colorKeys = Object.keys(themeColors) as (keyof typeof themeColors)[]
+  for (const key of colorKeys) {
+    const color = themeColors[key]
+    const rgb = hexToRgb(color)!
+    const varName = ThemeColorsVarName[key.toUpperCase()]
 
-  document.documentElement.style.setProperty(ThemeColorsVarName.PRIMARY, themeColors.primary)
-  document.documentElement.style.setProperty(ThemeColorsVarName.SECONDARY, themeColors.secondary)
-  document.documentElement.style.setProperty(ThemeColorsVarName.SUCCESS, themeColors.success)
-  document.documentElement.style.setProperty(ThemeColorsVarName.DANGER, themeColors.danger)
-  document.documentElement.style.setProperty(ThemeColorsVarName.WARNING, themeColors.warning)
-  document.documentElement.style.setProperty(ThemeColorsVarName.INFO, themeColors.info)
+    document.documentElement.style.setProperty(varName, color)
+    document.documentElement.style.setProperty(
+      `${varName}${ThemeColorsVarSuffix.R}`,
+      rgb.r.toString()
+    )
+    document.documentElement.style.setProperty(
+      `${varName}${ThemeColorsVarSuffix.G}`,
+      rgb.g.toString()
+    )
+    document.documentElement.style.setProperty(
+      `${varName}${ThemeColorsVarSuffix.B}`,
+      rgb.b.toString()
+    )
+  }
 }

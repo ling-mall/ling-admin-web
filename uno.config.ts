@@ -10,7 +10,25 @@ import {
   transformerVariantGroup
 } from 'unocss'
 
-import { ThemeColorsVarName } from './src/enums/appEnum'
+import { ThemeColorsVarName, ThemeColorsVarSuffix } from './src/enums/appEnum'
+
+const getRgba = (cssVarName: string) => {
+  return (
+    'rgba(' +
+    'calc(var(' +
+    cssVarName +
+    ThemeColorsVarSuffix.R +
+    ')),' +
+    'calc(var(' +
+    cssVarName +
+    ThemeColorsVarSuffix.G +
+    ')),' +
+    'calc(var(' +
+    cssVarName +
+    ThemeColorsVarSuffix.B +
+    ')))'
+  )
+}
 
 export default defineConfig({
   shortcuts: [
@@ -18,12 +36,12 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      primary: `var(${ThemeColorsVarName.PRIMARY})`,
-      secondary: `var(${ThemeColorsVarName.INFO})`,
-      success: `var(${ThemeColorsVarName.SUCCESS})`,
-      danger: `var(${ThemeColorsVarName.DANGER})`,
-      warning: `var(${ThemeColorsVarName.WARNING})`,
-      info: `var(${ThemeColorsVarName.INFO})`
+      primary: getRgba(ThemeColorsVarName.PRIMARY),
+      secondary: getRgba(ThemeColorsVarName.INFO),
+      success: getRgba(ThemeColorsVarName.SUCCESS),
+      danger: getRgba(ThemeColorsVarName.DANGER),
+      warning: getRgba(ThemeColorsVarName.WARNING),
+      info: getRgba(ThemeColorsVarName.INFO)
     }
   },
   presets: [

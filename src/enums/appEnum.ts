@@ -25,3 +25,9 @@ export enum ThemeColorsVarName {
   /** 信息颜色 */
   INFO = '--color-info'
 }
+
+export enum ThemeColorsVarSuffix {
+  R = '-r',
+  G = '-g',
+  B = '-b'
+}

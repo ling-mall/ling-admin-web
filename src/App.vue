@@ -2,6 +2,7 @@
   <!-- <RouterView /> -->
   <div class="mt-4 ml-4">
     <Button label="Submit" />
+    <div class="w-20 h-20 bg-primary/50"></div>
   </div>
 </template>
 
