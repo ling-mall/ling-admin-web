@@ -26,9 +26,6 @@ dependencies:
   pinia-plugin-persistedstate:
     specifier: ^3.2.0
     version: 3.2.0(pinia@2.1.7)
-  primevue:
-    specifier: ^3.45.0
-    version: 3.45.0(vue@3.3.10)
   qs:
     specifier: ^6.11.2
     version: 6.11.2
@@ -9095,14 +9092,6 @@ packages:
       ansi-styles: 5.2.0
       react-is: 18.2.0
     dev: true
-
-  /primevue@3.45.0(vue@3.3.10):
-    resolution: {integrity: sha512-qtA2YDi6SSBkGRb33lUXL2WnzMd7VZd4IC/YLXiUZLnxCGxqtB4iYj+jGqINNDcIFVqIYYMrc1UhiX+C68GQEQ==}
-    peerDependencies:
-      vue: ^3.0.0
-    dependencies:
-      vue: 3.3.10(typescript@5.3.3)
-    dev: false
 
   /promise.allsettled@1.0.7:
     resolution: {integrity: sha512-hezvKvQQmsFkOdrZfYxUxkyxl8mgFQeT259Ajj9PXdbg9VzBCWrItOev72JyWxkCD5VSSqAeHmlN3tWx4DlmsA==}
