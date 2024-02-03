@@ -18,7 +18,7 @@
   const levelList = ref<Array<RouteLocationMatched>>([])
   // 获取面包屑导航
   const getBreadcrumb = () => {
-    // 对匹配的路由进行过滤 过滤掉没有title属性的路由，没有title就无法作为面包屑导航
+    // 对匹配的路由进行过滤 过滤掉没有 title 属性的路由，没有 title 就无法作为面包屑导航
     let matched = route.matched.filter((item) => item.meta && item.meta.title)
 
     levelList.value = matched.filter(
