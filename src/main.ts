@@ -5,9 +5,6 @@ import '@/design/index.scss'
 import { initAppConfigStore } from './logics/initAppConfig'
 import { setupRouter } from './router'
 
-import '@purge-icons/generated'
-import 'virtual:svg-icons-register'
-
 import '@unocss/reset/tailwind-compat.css'
 
 import { setupI18n } from './locales/setupI18n'

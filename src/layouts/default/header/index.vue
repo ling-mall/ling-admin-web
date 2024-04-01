@@ -19,7 +19,7 @@
 </template>
 <script setup lang="ts">
   import DefaultLayoutBreadcrumb from './Breadcrumb.vue'
-  import AppLocalePicker from '@/components/common/AppLocalePicker.vue'
+  import AppLocalePicker from '@/components/Common/AppLocalePicker.vue'
 
   defineOptions({ name: 'DefaultLayoutHeader' })
 </script>
