@@ -46,6 +46,12 @@ devDependencies:
   '@iconify/json':
     specifier: ^2.2.196
     version: 2.2.196
+  '@iconify/utils':
+    specifier: ^2.1.22
+    version: 2.1.22
+  '@iconify/vue':
+    specifier: ^4.1.1
+    version: 4.1.1(vue@3.4.21)
   '@types/fs-extra':
     specifier: ^11.0.4
     version: 11.0.4
@@ -73,6 +79,9 @@ devDependencies:
   '@vueuse/router':
     specifier: ^10.9.0
     version: 10.9.0(vue-router@4.3.0)(vue@3.4.21)
+  chalk:
+    specifier: ^5.3.0
+    version: 5.3.0
   commitizen:
     specifier: ^4.3.0
     version: 4.3.0(@types/node@20.12.2)(typescript@5.4.3)
@@ -118,6 +127,9 @@ devDependencies:
   husky:
     specifier: ^9.0.11
     version: 9.0.11
+  inquirer:
+    specifier: ^9.2.17
+    version: 9.2.17
   jest:
     specifier: ^29.7.0
     version: 29.7.0(@types/node@20.12.2)
@@ -1383,6 +1395,15 @@ packages:
       mlly: 1.6.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@iconify/vue@4.1.1(vue@3.4.21):
+    resolution: {integrity: sha512-RL85Bm/DAe8y6rT6pux7D2FJSiUEM/TPfyK7GrbAOfTSwrhvwJW+S5yijdGcmtXouA8MtuH9C7l4hiSE4mLMjg==}
+    peerDependencies:
+      vue: '>=3'
+    dependencies:
+      '@iconify/types': 2.0.0
+      vue: 3.4.21(typescript@5.4.3)
     dev: true
 
   /@intlify/core-base@9.10.2:
@@ -5883,6 +5904,27 @@ packages:
 
   /inquirer@9.2.14:
     resolution: {integrity: sha512-4ByIMt677Iz5AvjyKrDpzaepIyMewNvDcvwpVVRZNmy9dLakVoVgdCHZXbK1SlVJra1db0JZ6XkJyHsanpdrdQ==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@ljharb/through': 2.3.13
+      ansi-escapes: 4.3.2
+      chalk: 5.3.0
+      cli-cursor: 3.1.0
+      cli-width: 4.1.0
+      external-editor: 3.1.0
+      figures: 3.2.0
+      lodash: 4.17.21
+      mute-stream: 1.0.0
+      ora: 5.4.1
+      run-async: 3.0.0
+      rxjs: 7.8.1
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      wrap-ansi: 6.2.0
+    dev: true
+
+  /inquirer@9.2.17:
+    resolution: {integrity: sha512-Vr3Ia2ud5sGnioURkE69endl4SkeJcMzTF6SosKcX5GALJfId7C+JvO5ZZb6y1LOXnEofCPbwzoQ1q0e8Gaduw==}
     engines: {node: '>=18'}
     dependencies:
       '@ljharb/through': 2.3.13

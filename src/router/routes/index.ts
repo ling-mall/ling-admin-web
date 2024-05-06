@@ -32,7 +32,7 @@ export const basicRoutes: RouteRecordRaw[] = [
       {
         path: 'workbench',
         name: 'Workbench',
-        component: () => import('@/views/index.vue'),
+        component: () => import('@/views/index2.vue'),
         meta: {
           hideMenu: true,
           hideBreadcrumb: true,

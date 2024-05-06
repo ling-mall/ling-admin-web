@@ -47,9 +47,13 @@ export default defineConfig({
   presets: [
     presetUno(),
     presetAttributify({
-      prefix: 'u-'
+      prefix: '-'
     }),
-    presetIcons(),
+    presetIcons({
+      collections: {
+        carbon: () => import('@iconify/json/json/carbon.json').then((i) => i.default)
+      }
+    }),
     presetTypography(),
     presetWebFonts({
       fonts: {}

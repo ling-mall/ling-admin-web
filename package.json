@@ -16,7 +16,8 @@
     "lint:lint-staged": "lint-staged",
     "changelog": "conventional-changelog -p custom-config -i CHANGELOG.md -s -r 0  -n ./changelog-option.cjs",
     "release": "release-it --no-npm",
-    "commit": "cz-customizable"
+    "commit": "cz-customizable",
+    "gen:icon": "esno ./build/generate/icon/index.ts"
   },
   "dependencies": {
     "@unocss/reset": "^0.58.8",
@@ -34,6 +35,8 @@
     "@babel/eslint-parser": "^7.24.1",
     "@commitlint/cli": "^19.2.1",
     "@iconify/json": "^2.2.196",
+    "@iconify/utils": "^2.1.22",
+    "@iconify/vue": "^4.1.1",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash-es": "^4.17.12",
     "@types/qs": "^6.9.14",
@@ -43,6 +46,7 @@
     "@vue-macros/volar": "^0.18.17",
     "@vueuse/core": "^10.9.0",
     "@vueuse/router": "^10.9.0",
+    "chalk": "^5.3.0",
     "commitizen": "^4.3.0",
     "conventional-changelog-cli": "^4.1.0",
     "conventional-changelog-custom-config": "^0.3.1",
@@ -58,6 +62,7 @@
     "esno": "^4.7.0",
     "fs-extra": "^11.2.0",
     "husky": "^9.0.11",
+    "inquirer": "^9.2.17",
     "jest": "^29.7.0",
     "lint-staged": "^15.2.2",
     "postcss": "^8.4.38",
