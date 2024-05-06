@@ -2,10 +2,19 @@
   <div class="w-9/10 m-a mt-10">
     <div>
       <div>字典</div>
+      <div class="flex flex-col mt-10">
+        <div>
+          <el-button>添加字典</el-button>
+        </div>
+        <div class="flex flex-row" v-for="dictItem in dict" :key="dictItem.dictName">
+          <div>{{ dictItem.dictName }}</div>
+          <div></div>
+        </div>
+      </div>
     </div>
     <div class="mt-20">
-      <vxe-button @click="addColumn">添加列</vxe-button>
-      <vxe-button>添加行</vxe-button>
+      <el-button @click="addColumn">添加列</el-button>
+      <el-button>添加行</el-button>
     </div>
     <vxe-table
       class="mt-5"
@@ -108,5 +117,9 @@
       isRequired: 0
     })
   }
+
+  const dict = ref<{ dictName: string; dictValue: string[] }[]>([
+    { dictName: 'JavaType', dictValue: ['Long'] }
+  ])
 </script>
 <style lang="scss" scoped></style>
