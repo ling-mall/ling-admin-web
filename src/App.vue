@@ -1,12 +1,12 @@
 <template>
   <!-- <RouterView /> -->
   <div>
-    <EntityView />
+    <Generate />
   </div>
 </template>
 
 <script setup lang="ts">
-  import EntityView from '@/views/generate/Entity.vue'
+  import Generate from '@/views/generate/index.vue'
 </script>
 
 <style scoped></style>

@@ -1,38 +1,5 @@
 <template>
-  <div class="w-9/10 m-a mt-10">
-    <div>
-      <div class="flex flex-col mt-10">
-        <div class="flex flex-row w-80">
-          <el-input v-model="addDictInputValueForm" />
-          <el-button class="ml-1" @click="addDict">添加字典</el-button>
-        </div>
-        <div class="mt-4 border border-solid border-gray-200 divide-y">
-          <div class="flex flex-row p-3" v-for="dictItem in dict" :key="dictItem.dictName">
-            <div>{{ dictItem.dictName }}</div>
-            :
-            <div class="ml-6 flex flex-row">
-              <el-tag
-                class="ml-4"
-                v-for="(tabItem, index) in dictItem.dictValue"
-                :key="index"
-                closable
-                @close="removeDictValue(tabItem, dictItem.dictValue)"
-              >
-                {{ tabItem }}
-              </el-tag>
-              <div class="w-20">
-                <el-input
-                  class="ml-4"
-                  size="small"
-                  v-model="dictItem.inputValue"
-                  @keyup.enter="addDictValue(dictItem)"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div>
     <div class="mt-20">
       <el-button @click="handleAddColumn">添加列</el-button>
       <el-button @click="addRow">添加行</el-button>
@@ -56,8 +23,8 @@
               <div
                 class="cloumn-handle w-10 text-2xl text-gray-500 flex justify-center items-center"
               >
-                <div class="i-material-symbols-drag-handle cursor-move"></div
-              ></div>
+                <div class="i-material-symbols-drag-handle cursor-move"></div>
+              </div>
               <div class="flex-grow flex items-center">{{ cloumn.columnName }}</div>
               <el-popconfirm title="确定删除该列吗？" @confirm="handleDeleteColumn(cloumn)">
                 <template #reference>
@@ -109,7 +76,7 @@
         <el-form-item label="字典" v-if="addColumnForm.type === 2">
           <el-select v-model="addColumnForm.dictName">
             <el-option
-              v-for="dictItem in dict"
+              v-for="dictItem in props.dictData"
               :key="dictItem.dictName"
               :label="dictItem.dictName"
               :value="dictItem.dictName"
@@ -130,6 +97,7 @@
   import { ElMessage } from 'element-plus'
   import { VxeGridProps } from 'vxe-table'
   import { VueDraggable } from 'vue-draggable-plus'
+  import { Dict } from './types'
 
   defineOptions({ name: 'EntityView' })
 
@@ -328,48 +296,25 @@
 
   // 字典 ===================================================================================================================
 
-  const addDictInputValueForm = ref('')
-
-  type Dict = { dictName: string; dictValue: string[]; inputValue: string }
-
-  const dict = ref<Dict[]>([
-    { dictName: 'MysqlType', dictValue: ['bigint', 'varchar'], inputValue: '' }
-  ])
-
-  const addDict = () => {
-    if (addDictInputValueForm.value === '') {
-      return
+  const props = defineProps({
+    dictData: {
+      type: Object as PropType<Dict[]>,
+      default: () => {
+        return []
+      }
     }
+  })
 
-    // 检查字典是否已存在
-    let isExist = dict.value.some((item) => item.dictName === addDictInputValueForm.value)
-    if (isExist) {
-      console.log('字典已存在')
-
-      ElMessage.error('字典已存在')
-      return
+  watch(
+    () => props.dictData,
+    () => {
+      refushColumn()
     }
-    dict.value.push({ dictName: addDictInputValueForm.value, dictValue: [], inputValue: '' })
-    addDictInputValueForm.value = ''
-  }
-
-  const removeDictValue = (tag: string, tagArr: string[]) => {
-    tagArr.splice(tagArr.indexOf(tag), 1)
-    refushColumn()
-  }
-
-  const addDictValue = (item: Dict) => {
-    if (item.inputValue === '') {
-      return
-    }
-    item.dictValue.push(item.inputValue)
-    item.inputValue = ''
-    refushColumn()
-  }
+  )
 
   const getDictOptions = (columnName: string) => {
     let dictName = entityData.value.columnsDictMap[columnName]
-    let dictItem = dict.value.find((item) => item.dictName === dictName)
+    let dictItem = props.dictData.find((item) => item.dictName === dictName)
     if (dictItem) {
       return dictItem.dictValue.map((str) => {
         return { label: str, value: str }
