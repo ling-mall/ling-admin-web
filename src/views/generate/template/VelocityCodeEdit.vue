@@ -2,7 +2,7 @@
   <Codemirror
     v-model="codeString"
     placeholder="Code here..."
-    :style="{ height: '400px' }"
+    :style="{ height: '100%' }"
     :autofocus="true"
     :indent-with-tab="true"
     :tabSize="2"
@@ -32,4 +32,8 @@
   ]
 </script>
 
-<style scoped lang="scss"></style>
+<style lang="scss">
+  .cm-focused {
+    outline: none !important;
+  }
+</style>

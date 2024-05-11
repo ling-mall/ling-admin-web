@@ -1,6 +1,6 @@
 <template>
   <!-- <RouterView /> -->
-  <div>
+  <div class="w-full h-full">
     <Generate />
   </div>
 </template>

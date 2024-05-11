@@ -1,24 +1,26 @@
 <template>
-  <div
-    class="w-full h-full flex flex-row divide-x children:(border-0 border-solid border-gray-200)"
-  >
-    <div class="min-w-64 h-full w-auto">
-      <Tree
-        class="w-full"
-        v-model:selectionKeys="selectedKey"
-        :value="nodes"
-        selectionMode="single"
-        @node-select="select"
-        v-model:expandedKeys="expandedKeys"
-      />
+  <div class="w-9/10 m-a mt-10">
+    <div class="flex flex-row">
+      <div class="w-80">
+        <Tree
+          class="w-full"
+          v-model:selectionKeys="selectedKey"
+          :value="nodes"
+          selectionMode="single"
+          @node-select="select"
+          v-model:expandedKeys="expandedKeys"
+        />{{ expandedKeys }}
+      </div>
+      <div class="flex-grow border border-solid border-gray-300">
+        <VelocityCodeEdit :code="code" />
+      </div>
     </div>
-    <div class="flex-grow"> </div>
   </div>
 </template>
 <script lang="ts" setup>
-  import Tree from 'primevue/tree'
-
   defineOptions({ name: 'GenerateView' })
+  import Tree from 'primevue/tree'
+  import VelocityCodeEdit from '@/views/generate/template/VelocityCodeEdit.vue'
 
   const selectedKey = ref()
   const nodes = ref([
@@ -73,9 +75,11 @@
       }
     }
   }
+
+  const code = ref('')
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   .p-tree {
-    padding: 0;
+    padding: 0 10px 0 0;
   }
 </style>
