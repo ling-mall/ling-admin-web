@@ -51,3 +51,39 @@ export function hexToRgb(hex: string) {
 export function rgbToHex(r: number, g: number, b: number) {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
 }
+
+type PropMap = { [key: string]: string }
+
+/**
+ * 用于复制属性到别的属性上或者提取属性
+ * @param data 对象数组
+ * @param propMap 键值对，{'oldProp': 'newProp'}
+ * @param copyAll 是否复制所有属性，会新增 propMap 中没有的属性
+ * @param isTree 是否是树形结构
+ * @param childrenProp 树形结构子节点属性名
+ */
+export const copyProps = (
+  data: any[],
+  propMap: PropMap,
+  copyAll: boolean,
+  isTree = false,
+  childrenProp = 'children'
+) => {
+  return data.map((item) => {
+    const newItem: { [key: string]: any } = {}
+    if (copyAll) {
+      for (const key in item) {
+        newItem[key] = item[key]
+      }
+    }
+    for (const key in propMap) {
+      if (item.hasOwnProperty(key)) {
+        newItem[propMap[key]] = item[key]
+      }
+    }
+    if (isTree && Array.isArray(item[childrenProp])) {
+      newItem[childrenProp] = copyProps(item[childrenProp], propMap, copyAll, isTree, childrenProp)
+    }
+    return newItem
+  })
+}

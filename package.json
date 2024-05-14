@@ -22,6 +22,7 @@
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/legacy-modes": "^6.4.0",
+    "@imengyu/vue3-context-menu": "^1.4.1",
     "@unocss/reset": "^0.58.8",
     "axios": "^1.6.8",
     "element-plus": "^2.6.3",

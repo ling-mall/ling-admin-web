@@ -11,6 +11,9 @@ dependencies:
   '@codemirror/legacy-modes':
     specifier: ^6.4.0
     version: 6.4.0
+  '@imengyu/vue3-context-menu':
+    specifier: ^1.4.1
+    version: 1.4.1
   '@unocss/reset':
     specifier: ^0.58.8
     version: 0.58.8
@@ -1501,6 +1504,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@imengyu/vue3-context-menu@1.4.1:
+    resolution: {integrity: sha512-34WInBVx0Mr0zSsRCQWG7ezHk0JzOuZqE4T8ywI82mbk/jfWBRtTkKHYSZbtmw2oYEfDFwCWdM/gur7QFAXYMA==}
+    dev: false
 
   /@intlify/core-base@9.10.2:
     resolution: {integrity: sha512-HGStVnKobsJL0DoYIyRCGXBH63DMQqEZxDUGrkNI05FuTcruYUtOAxyL3zoAZu/uDGO6mcUvm3VXBaHG2GdZCg==}
