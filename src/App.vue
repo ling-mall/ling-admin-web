@@ -1,12 +1,15 @@
 <template>
   <!-- <RouterView /> -->
-  <div class="mt-4 ml-4">
-    <Button label="Submit" severity="success" />
-  </div>
+  <SvgIcon :name="svgName" :size="100" class="color-blue" />
+  {{ svgName }}
+  <ElButton type="primary" @click="svgName = 'AA'">测试按钮</ElButton>
 </template>
 
 <script setup lang="ts">
-  import Button from 'primevue/button'
+  import SvgIcon from '@/components/Icon/SvgIcon.vue'
+  import { ElButton } from 'element-plus'
+
+  const svgName = ref('dark')
 </script>
 
 <style scoped></style>

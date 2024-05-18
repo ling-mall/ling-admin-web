@@ -1,31 +1,16 @@
-<template>
-  <svg class="svg-icon" aria-hidden="true" :style="getStyle">
-    <use class="svg-use" :href="symbolId" />
-  </svg>
-</template>
-<script lang="ts" setup>
-  import type { CSSProperties } from 'vue'
+<script setup lang="ts">
+  import { defineAsyncComponent, CSSProperties } from 'vue'
 
   const props = defineProps({
-    prefix: {
-      type: String,
-      default: 'icon'
-    },
     name: {
       type: String,
       required: true
     },
     size: {
-      type: [String, Number],
+      type: [Number, String],
       default: 16
-    },
-    spin: {
-      type: Boolean,
-      default: false
     }
   })
-
-  const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 
   const getStyle = computed((): CSSProperties => {
     const { size } = props
@@ -33,19 +18,29 @@
     s = `${s.replace('px', '')}px`
     return {
       width: s,
-      height: s
+      height: s,
+      fill: 'currentColor'
     }
   })
-</script>
-<style lang="scss" scoped>
-  .svg-icon {
-    display: inline-block;
-    overflow: hidden;
-    vertical-align: -0.15em;
-    fill: currentcolor;
+
+  const dynamicIcon = shallowRef<any>('')
+
+  /** 加载图标 */
+  const loadSvgIcon = () => {
+    dynamicIcon.value = defineAsyncComponent(() => import(`../../assets/icons/${props.name}.svg`))
   }
 
-  .svg-icon-spin {
-    animation: loadingCircle 1s infinite linear;
-  }
-</style>
+  onMounted(() => {
+    loadSvgIcon()
+  })
+
+  watch(
+    () => props.name,
+    () => {
+      loadSvgIcon()
+    }
+  )
+</script>
+<template>
+  <component v-if="dynamicIcon" :is="dynamicIcon" v-bind="$attrs" :style="getStyle" />
+</template>

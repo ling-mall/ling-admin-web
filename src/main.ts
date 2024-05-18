@@ -4,13 +4,8 @@ import 'virtual:uno.css'
 import '@/design/index.scss'
 import { initAppConfigStore } from './logics/initAppConfig'
 import { setupRouter } from './router'
-import { setupPrimeVue } from './primevue'
 
-import '@purge-icons/generated'
-import 'virtual:svg-icons-register'
-
-import '@unocss/reset/sanitize/sanitize.css'
-import '@unocss/reset/sanitize/assets.css'
+import '@unocss/reset/tailwind-compat.css'
 
 import { setupI18n } from './locales/setupI18n'
 
@@ -27,8 +22,5 @@ initAppConfigStore()
 setupRouter(app)
 
 setupI18n(app)
-
-// primevue
-setupPrimeVue(app)
 
 app.mount('#app', true)

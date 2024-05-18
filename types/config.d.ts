@@ -1,4 +1,4 @@
-import { ThemeEnum } from '@/enums/appEnum'
+import { ThemeModeEnum } from '@/enums/appEnum'
 
 /**全局环境配置 */
 export interface GlobEnvConfig {
@@ -24,21 +24,82 @@ export interface GlobConfig {
   shortName: string
 }
 
+/**
+ * 主题
+ */
+interface Theme {
+  /**
+   * 颜色
+   */
+  colors: {
+    /**
+     * 主要颜色，通常用于突出重点或主要元素
+     */
+    primary: string
+    /**
+     * 次要颜色，用于补充主要颜色或提供对比效果
+     */
+    secondary: string
+    /**
+     * 成功颜色，表示操作或状态成功
+     */
+    success: string
+    /**
+     * 危险颜色，表示警告或错误状态
+     */
+    danger: string
+    /**
+     * 警告颜色，用于表示潜在的问题或需要注意的情况
+     */
+    warning: string
+    /**
+     * 信息颜色，用于提供额外的信息或提示
+     */
+    info: string
+  }
+}
+
 /** 项目配置 */
 export interface ProjectConfig {
   /** 默认主题*/
-  defaultTheme: ThemeEnum
+  defaultTheme: ThemeModeEnum
+  /** 主题 */
+  theme: Theme
   /** 菜单设置 */
   menuSetting: MenuSetting
 }
 
+/**
+ * 菜单设置
+ */
 export interface MenuSetting {
+  /**
+   * 菜单背景颜色
+   */
   bgColor: string
+  /**
+   * 菜单文字颜色
+   */
   textColor: string
+  /**
+   * 激活状态的菜单文字颜色
+   */
   activeTextColor: string
+  /**
+   * 是否固定菜单，即是否在滚动页面时将菜单固定在顶部
+   */
   fixed: boolean
+  /**
+   * 是否隐藏菜单栏
+   */
   siderHidden: boolean
+  /**
+   * 是否显示菜单栏
+   */
   show: boolean
+  /**
+   * 菜单栏宽度
+   */
   menuWidth: number
 }
 

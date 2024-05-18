@@ -8,11 +8,18 @@
         <DefaultLayoutBreadcrumb />
       </div>
     </div>
-    <div>右</div>
+    <div
+      class="flex justify-center items-center children:(flex justify-center items-center hover:bg-gray-1 cursor-pointer)"
+    >
+      <div class="h-full w-full">
+        <AppLocalePicker />
+      </div>
+    </div>
   </header>
 </template>
 <script setup lang="ts">
   import DefaultLayoutBreadcrumb from './Breadcrumb.vue'
+  import AppLocalePicker from '@/components/Common/AppLocalePicker.vue'
 
   defineOptions({ name: 'DefaultLayoutHeader' })
 </script>

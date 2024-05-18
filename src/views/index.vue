@@ -1,5 +1,5 @@
 <template>
-  <div>aaa</div>
+  <div class="flex">aaa</div>
 </template>
 <script lang="ts" setup>
   defineOptions({ name: 'IndexPage' })
