@@ -1,4 +1,11 @@
+// element 黑暗模式
 @import 'element-plus/theme-chalk/dark/css-vars.css';
+
+// @import './variable.css';
+
+.a {
+  background-color: #fff;
+}
 
 html {
   font-size: 14px;
@@ -14,14 +21,23 @@ body {
   margin: 0;
 }
 
-#app {
-  height: 100%;
-  width: 100%;
-}
-
 a {
   text-decoration: none;
   color: inherit;
+}
+
+a:focus,
+a:active,
+button,
+div,
+svg,
+span {
+  outline: none;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
 }
 
 /* Color Mode transition */

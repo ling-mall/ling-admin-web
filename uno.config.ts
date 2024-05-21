@@ -58,11 +58,7 @@ export default defineConfig({
   transformers: [transformerDirectives(), transformerVariantGroup()],
   content: {
     pipeline: {
-      include: [
-        './index.html',
-        './src/**/*.{vue,js,ts,jsx,tsx}',
-        './node_modules/primevue/**/*.{vue,js,ts,jsx,tsx}'
-      ]
+      include: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}']
     }
   }
 })
