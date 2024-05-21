@@ -118,7 +118,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { Dict, FormItem } from './types'
+  import { Dict, FormItem } from './../types'
   import { PropType } from 'vue'
 
   defineOptions({ name: 'GlobalProperties' })

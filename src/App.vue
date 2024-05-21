@@ -1,12 +1,10 @@
 <template>
-  <!-- <RouterView /> -->
-  <div class="w-full h-full">
+  <RouterView />
+  <!-- <div class="w-full h-full">
     <Generate />
-  </div>
+  </div> -->
 </template>
 
-<script setup lang="ts">
-  import Generate from '@/views/generate/index.vue'
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>

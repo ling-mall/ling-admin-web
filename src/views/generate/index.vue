@@ -3,42 +3,58 @@
     class="w-full h-full flex flex-row divide-x children:(border-0 border-solid border-gray-200)"
   >
     <div class="min-w-64 h-full w-auto hidden lg:flex">
-      <Tree
-        class="w-full"
-        v-model:selectionKeys="selectedKey"
-        :value="nodes"
-        selectionMode="single"
-        @node-select="select"
-        @node-unselect="select"
-        v-model:expandedKeys="expandedKeys"
-      />
+      <DataTree :nodes="nodes" @select="handleSelect" />
     </div>
-    <div class="flex-grow"> 选择{{ selectedKey }}</div>
+    <div
+      v-if="!groupId"
+      class="flex flex-grow justify-center items-center h-full w-full text-3xl text-gray-600"
+    >
+      <div>请先选择分组</div>
+    </div>
+    <div v-if="groupId" class="flex-grow flex flex-col">
+      <TabMenu :model="items" v-model:activeIndex="active">
+        <template #item="{ item, props }">
+          <router-link v-if="item.route" :to="item.route">
+            <div class="flex flex-row px-6 py-4 gap-2 items-center">
+              <div :class="[item.icon, 'text-2xl text-gray-500']"></div>
+              <span v-bind="props.label">{{ item.label }}</span>
+            </div>
+          </router-link>
+        </template>
+      </TabMenu>
+      <div class="pt-4 flex-grow">
+        <RouterView v-if="groupId" />
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
-  import Tree from 'primevue/tree'
-  import { copyProps } from '@/utils/index'
+  import DataTree from './components/MenuTree.vue'
+  import TabMenu from 'primevue/tabmenu'
+
+  import { copyProps } from '@/utils'
+  import { getGenerateTemplateGroupTree } from '@/api/generate'
 
   defineOptions({ name: 'GenerateView' })
 
-  const selectedKey = ref()
+  const route = useRoute()
+  const groupId = ref(route.query.groupId)
+
+  const active = ref()
+  const items = ref([
+    { label: '生成', icon: 'i-system-uicons-lightning', route: '/generate/index' },
+    { label: '配置', icon: 'i-material-symbols-settings-outline-rounded', route: '/generate/cofig' }
+  ])
+  onMounted(() => {
+    // 查找当前路由在第几个下标
+    const index = items.value.findIndex((item) => item.route === route.fullPath)
+    if (index !== -1) {
+      active.value = index
+    }
+  })
+
   const nodes = ref<any[]>([])
-  const expandedKeys = ref({})
-  const select = (e) => {
-    if (e.children && e.children.length > 0) {
-      expandNode(e)
-    }
-  }
-  const expandNode = (node) => {
-    if (node.children && node.children.length) {
-      if (expandedKeys.value[node.key]) {
-        delete expandedKeys.value[node.key]
-      } else {
-        expandedKeys.value[node.key] = true
-      }
-    }
-  }
+  const currentNode = ref()
 
   const groupTreeData = [
     {
@@ -106,8 +122,24 @@
       true
     )
 
+    getGenerateTemplateGroupTree().then((res) => {
+      copyProps(
+        res,
+        {
+          id: 'key',
+          name: 'label'
+        },
+        true,
+        true
+      )
+    })
+
     nodes.value = a
   })
+
+  const handleSelect = (node: any) => {
+    currentNode.value = node
+  }
 </script>
 <style lang="scss">
   .p-tree {

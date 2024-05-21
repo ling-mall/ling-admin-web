@@ -4,7 +4,25 @@ import { RouteRecordRaw } from 'vue-router'
 export const basicRoutes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/dashboard/analysis'
+    redirect: '/generate'
+  },
+  {
+    path: '/generate',
+    name: 'Generate',
+    component: () => import('@/views/generate/index.vue'),
+    redirect: '/generate/index',
+    children: [
+      {
+        path: 'cofig',
+        name: 'GenerateConfig',
+        component: () => import('@/views/generate/config.vue')
+      },
+      {
+        path: 'index',
+        name: 'GenerateIndex',
+        component: () => import('@/views/generate/generate.vue')
+      }
+    ]
   },
   {
     path: '/dashboard',

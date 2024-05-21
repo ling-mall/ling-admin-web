@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="flex flex-col mt-10">
+    <div class="flex flex-col">
       <div class="flex flex-row w-80">
         <el-input v-model="addDictInputValueForm" />
         <el-button class="ml-1" @click="addDict">添加字典</el-button>
       </div>
-      <div class="mt-4 border border-solid border-gray-200 divide-y">
+      <div class="mt-4">
         <div class="flex flex-row p-3" v-for="dictItem in data" :key="dictItem.dictName">
           <div>{{ dictItem.dictName }}</div>
           :
@@ -37,7 +37,7 @@
   defineOptions({ name: 'DictView' })
 
   import { ElMessage } from 'element-plus'
-  import { Dict } from './types'
+  import { Dict } from '../types'
 
   const props = defineProps({
     data: {

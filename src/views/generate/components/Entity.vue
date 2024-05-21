@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="mt-20">
+  <div class="border border-solid border-gray-200 p-8">
+    <div>
       <el-button @click="handleAddColumn">添加列</el-button>
       <el-button @click="addRow">添加行</el-button>
       <el-popover placement="bottom" :width="240" trigger="click">
@@ -97,9 +97,29 @@
   import { ElMessage } from 'element-plus'
   import { VxeGridProps } from 'vxe-table'
   import { VueDraggable } from 'vue-draggable-plus'
-  import { Dict } from './types'
+  import { Column, Dict, EntityData } from '../types'
+  import { PropType } from 'vue'
 
   defineOptions({ name: 'EntityView' })
+
+  const props = defineProps({
+    dictData: {
+      type: Object as PropType<Dict[]>,
+      default: () => {
+        return []
+      }
+    },
+    entityData: {
+      type: Object as PropType<EntityData>,
+      default: () => {
+        return {}
+      }
+    }
+  })
+
+  const emit = defineEmits(['update:entityData'])
+
+  const entityData = useVModel(props, 'entityData', emit)
 
   onMounted(() => {
     tableData.value = transformRows(entityData.value)
@@ -110,46 +130,46 @@
 
   // 表格数据================================================================================
 
-  const entityData = ref<any>({
-    groupId: null,
-    entityName: 'User',
-    columnsDictMap: { MysqlType: 'MysqlType' },
-    columns: [
-      {
-        id: 3,
-        entityId: 5,
-        columnName: 'JavaType',
-        orderNo: 0,
-        isRequired: 0,
-        type: 1
-      },
-      {
-        id: 4,
-        entityId: 5,
-        columnName: 'MysqlType',
-        orderNo: 1,
-        isRequired: 0,
-        type: 2
-      }
-    ],
-    rows: [
-      {
-        id: 5,
-        index: 0,
-        entityId: 5,
-        columns: [
-          {
-            columnName: 'JavaType',
-            value: 'Long'
-          },
-          {
-            columnName: 'MysqlType',
-            value: 'bigint'
-          }
-        ]
-      }
-    ]
-  })
+  // const entityData = ref<EntityData>({
+  //   groupId: null,
+  //   entityName: 'User',
+  //   columnsDictMap: { MysqlType: 'MysqlType' },
+  //   columns: [
+  //     {
+  //       id: 3,
+  //       entityId: 5,
+  //       columnName: 'JavaType',
+  //       orderNo: 0,
+  //       isRequired: 0,
+  //       type: 1
+  //     },
+  //     {
+  //       id: 4,
+  //       entityId: 5,
+  //       columnName: 'MysqlType',
+  //       orderNo: 1,
+  //       isRequired: 0,
+  //       type: 2
+  //     }
+  //   ],
+  //   rows: [
+  //     {
+  //       id: 5,
+  //       index: 0,
+  //       entityId: 5,
+  //       columns: [
+  //         {
+  //           columnName: 'JavaType',
+  //           value: 'Long'
+  //         },
+  //         {
+  //           columnName: 'MysqlType',
+  //           value: 'bigint'
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // })
 
   const tableRef = ref()
   const tableData = ref<any[]>([])
@@ -164,7 +184,7 @@
 
   // 行操作====================================================================================
 
-  const transformRows = (data) => {
+  const transformRows = (data: EntityData) => {
     // 创建一个空数组来存储结果
     let result: Object[] = []
 
@@ -210,7 +230,7 @@
 
   const columns = ref<any>([])
 
-  const refushColumn = () => {
+  const refreshColumn = () => {
     columns.value = transformColumns(entityData.value)
     tableRef.value.loadColumn(columns.value)
   }
@@ -227,7 +247,7 @@
     addColumnDialogVisible.value = true
   }
   const addColumn = () => {
-    addColumnFormRef.value.validate((valid) => {
+    addColumnFormRef.value.validate((valid: boolean) => {
       if (valid) {
         // 校验是否名字重复
         if (entityData.value.columns.some((c) => c.columnName === addColumnForm.columnName)) {
@@ -235,7 +255,7 @@
           return
         }
 
-        let col = {
+        let col: Column = {
           columnName: addColumnForm.columnName,
           type: addColumnForm.type
         }
@@ -246,21 +266,21 @@
 
         ElMessage.success('添加成功')
         addColumnDialogVisible.value = false
-        refushColumn()
+        refreshColumn()
       }
     })
   }
 
-  const handleDeleteColumn = (column) => {
+  const handleDeleteColumn = (column: Column) => {
     const index = entityData.value.columns.indexOf(column)
     if (index > -1) {
       entityData.value.columns.splice(index, 1)
     }
-    refushColumn()
+    refreshColumn()
   }
 
   const sortColumn = () => {
-    refushColumn()
+    refreshColumn()
   }
 
   const transformColumns = (data: any) => {
@@ -296,19 +316,10 @@
 
   // 字典 ===================================================================================================================
 
-  const props = defineProps({
-    dictData: {
-      type: Object as PropType<Dict[]>,
-      default: () => {
-        return []
-      }
-    }
-  })
-
   watch(
     () => props.dictData,
     () => {
-      refushColumn()
+      refreshColumn()
     }
   )
 

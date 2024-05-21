@@ -19,6 +19,11 @@ body {
   width: 100%;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Color Mode transition */
 ::view-transition-old(root),
 ::view-transition-new(root) {
