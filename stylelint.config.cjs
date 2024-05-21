@@ -1,15 +1,24 @@
 module.exports = {
   root: true,
   // ↓插件
-  plugins: ['stylelint-order', 'stylelint-scss'],
+  plugins: ['stylelint-order', 'stylelint-scss', 'stylelint-prettier'],
   // ↓扩展
   extends: [
     'stylelint-config-standard',
     'stylelint-config-standard-scss',
-    'stylelint-config-recommended-vue'
+    'stylelint-config-recommended-vue',
+    'stylelint-prettier/recommended'
   ],
   // ↓自定义规则
   rules: {
+    'prettier/prettier': [
+      true,
+      {
+        singleQuote: true,
+        printWidth: 100,
+        endOfLine: 'auto'
+      }
+    ],
     // ↓禁止使用未知的伪类选择器。
     'selector-pseudo-class-no-unknown': [
       true,
