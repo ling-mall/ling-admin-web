@@ -188,6 +188,9 @@
     // 创建一个空数组来存储结果
     let result: Object[] = []
 
+    if (!data.columns) {
+      return []
+    }
     // 遍历数据中的每一行
     for (let row of data.rows) {
       // 创建一个空对象来存储列数据
@@ -296,21 +299,23 @@
       slots: { default: 'operate' },
       width: 100
     }
-    data.columns.forEach((c) => {
-      let obj: Object = {
-        field: c.columnName,
-        title: c.columnName,
-        align: 'center'
-      }
+    if (data.columns && data.columns.length > 0) {
+      data.columns.forEach((c) => {
+        let obj: Object = {
+          field: c.columnName,
+          title: c.columnName,
+          align: 'center'
+        }
 
-      if (c.type === 2) {
-        obj['editRender'] = { name: 'VxeSelect', options: getDictOptions(c.columnName) }
-      } else {
-        obj['editRender'] = { name: 'VxeInput' }
-      }
+        if (c.type === 2) {
+          obj['editRender'] = { name: 'VxeSelect', options: getDictOptions(c.columnName) }
+        } else {
+          obj['editRender'] = { name: 'VxeInput' }
+        }
 
-      result.push(obj)
-    })
+        result.push(obj)
+      })
+    }
     return [...result, operation]
   }
 

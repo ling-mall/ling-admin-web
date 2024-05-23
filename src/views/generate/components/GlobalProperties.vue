@@ -60,7 +60,6 @@
       </div>
     </el-form>
     <el-button @click="handleAdd">添加表单</el-button>
-    <el-button>提交</el-button>
     <el-dialog title="新增" v-model="addFormShow" width="30%">
       <el-form ref="addFormRef" :model="addForm" label-position="left" label-width="80px">
         <el-form-item label="属性名" required prop="field">

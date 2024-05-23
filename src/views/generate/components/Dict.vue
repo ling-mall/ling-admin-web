@@ -2,8 +2,8 @@
   <div>
     <div class="flex flex-col">
       <div class="flex flex-row w-80">
-        <el-input v-model="addDictInputValueForm" />
-        <el-button class="ml-1" @click="addDict">添加字典</el-button>
+        <el-input v-model="addDictInputValueForm" placeholder="字典名称" />
+        <el-button class="ml-4" @click="addDict">添加字典</el-button>
       </div>
       <div class="mt-4">
         <div class="flex flex-row p-3" v-for="dictItem in data" :key="dictItem.dictName">

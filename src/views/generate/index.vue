@@ -1,20 +1,25 @@
 <template>
   <div
     class="w-full h-full flex flex-row divide-x children:(border-0 border-solid border-gray-200)"
+    id="generate"
   >
-    <div class="min-w-64 h-full w-auto hidden lg:flex">
-      <DataTree :nodes="nodes" @select="handleSelect" />
+    <div
+      class="min-w-64 h-full w-auto hidden lg:flex fixed border-0 border-r border-solid border-gray-200"
+    >
+      <ScrollPanel style="width: 100%; height: 100%">
+        <DataTree :nodes="nodes" @select="handleSelect" />
+      </ScrollPanel>
     </div>
     <div
       v-if="!groupId"
-      class="flex flex-grow justify-center items-center h-full w-full text-3xl text-gray-600"
+      class="flex flex-grow justify-center items-center h-full w-full text-3xl text-gray-600 pl-64"
     >
       <div>请先选择分组</div>
     </div>
-    <div v-if="groupId" class="flex-grow flex flex-col">
-      <TabMenu :model="items" v-model:activeIndex="active">
+    <div v-if="groupId" class="flex-grow flex flex-col pl-64">
+      <TabMenu :model="items" v-model:activeIndex="active" class="fixed w-full bg-white z-10">
         <template #item="{ item, props }">
-          <router-link v-if="item.route" :to="item.route">
+          <router-link v-if="item.route" :to="{ path: item.route, query: { groupId } }">
             <div class="flex flex-row px-6 py-4 gap-2 items-center">
               <div :class="[item.icon, 'text-2xl text-gray-500']"></div>
               <span v-bind="props.label">{{ item.label }}</span>
@@ -22,18 +27,20 @@
           </router-link>
         </template>
       </TabMenu>
-      <div class="pt-4 flex-grow">
-        <RouterView v-if="groupId" />
+      <div class="pt-14">
+        <RouterView />
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
   import DataTree from './components/MenuTree.vue'
+  import ScrollPanel from 'primevue/scrollpanel'
   import TabMenu from 'primevue/tabmenu'
 
   import { copyProps } from '@/utils'
   import { getGenerateTemplateGroupTree } from '@/api/generate'
+  import { useGenerateStoreWithOut } from '@/store/modules/generate'
 
   defineOptions({ name: 'GenerateView' })
 
@@ -47,11 +54,23 @@
   ])
   onMounted(() => {
     // 查找当前路由在第几个下标
-    const index = items.value.findIndex((item) => item.route === route.fullPath)
+    const index = items.value.findIndex((item) => item.route === route.path)
     if (index !== -1) {
       active.value = index
     }
   })
+
+  const generateStore = useGenerateStoreWithOut()
+  watch(
+    () => active.value,
+    (newVal, oldVal) => {
+      if (newVal === 0 && generateStore.getConfigIsUpdated) {
+        nextTick(() => {
+          active.value = oldVal
+        })
+      }
+    }
+  )
 
   const nodes = ref<any[]>([])
   const currentNode = ref()
@@ -137,8 +156,16 @@
     nodes.value = a
   })
 
+  const router = useRouter()
   const handleSelect = (node: any) => {
     currentNode.value = node
+    router.push({
+      path: '/generate/index',
+      query: {
+        groupId: node.id
+      }
+    })
+    groupId.value = node.id
   }
 </script>
 <style lang="scss">

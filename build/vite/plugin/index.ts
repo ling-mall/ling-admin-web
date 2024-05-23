@@ -1,7 +1,6 @@
 import { PluginOption } from 'vite'
 
 import vue from '@vitejs/plugin-vue'
-import purgeIcons from 'vite-plugin-purge-icons'
 
 import { configHtmlPlugin } from './html'
 import UnoCSS from 'unocss/vite'
@@ -27,9 +26,6 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
 
   // vite-plugin-html
   vitePlugins.push(configHtmlPlugin(viteEnv, isBuild))
-
-  // vite-plugin-purge-icons
-  vitePlugins.push(purgeIcons())
 
   vitePlugins.push(svgLoader())
 
