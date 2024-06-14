@@ -39,3 +39,8 @@ export interface EntityData {
   columns: Column[]
   rows: Row[]
 }
+
+export interface GroupConfig {
+  dictData: Dict[]
+  formItemArr: FormItem[]
+}

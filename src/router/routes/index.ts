@@ -21,6 +21,11 @@ export const basicRoutes: RouteRecordRaw[] = [
         path: 'index',
         name: 'GenerateIndex',
         component: () => import('@/views/generate/generate.vue')
+      },
+      {
+        path: 'templates',
+        name: 'TemplatesIndex',
+        component: () => import('@/views/generate/template/index.vue')
       }
     ]
   },

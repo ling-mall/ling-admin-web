@@ -50,7 +50,12 @@
   const active = ref()
   const items = ref([
     { label: '生成', icon: 'i-system-uicons-lightning', route: '/generate/index' },
-    { label: '配置', icon: 'i-material-symbols-settings-outline-rounded', route: '/generate/cofig' }
+    {
+      label: '配置',
+      icon: 'i-material-symbols-settings-outline-rounded',
+      route: '/generate/cofig'
+    },
+    { label: '模板', icon: 'i-carbon-prompt-template', route: '/generate/templates' }
   ])
   onMounted(() => {
     // 查找当前路由在第几个下标

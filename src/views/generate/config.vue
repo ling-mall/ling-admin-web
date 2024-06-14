@@ -31,10 +31,12 @@
   // const route = useRoute()
   // const groupId = ref(route.query.groupId)
 
+  const generateStore = useGenerateStore()
+
   const groupConfig = ref({
     dictData: [],
     formItemArr: [],
-    Entity: []
+    templates: []
   })
 
   const beforeunloadFn = (e) => {
@@ -46,15 +48,29 @@
     return '关闭提示'
   }
   onMounted(() => {
-    window.addEventListener('beforeunload', (e) => beforeunloadFn(e))
+    generateStore.setConfigIsUpdated(false)
+    // window.addEventListener('beforeunload', (e) => beforeunloadFn(e))
   })
   onUnmounted(() => {
-    window.removeEventListener('beforeunload', (e) => beforeunloadFn(e))
+    // window.removeEventListener('beforeunload', (e) => beforeunloadFn(e))
   })
 
+  watch(
+    () => groupConfig.value,
+    () => {
+      generateStore.setConfigIsUpdated(true)
+      window.addEventListener('beforeunload', (e) => beforeunloadFn(e))
+    }
+  )
+
   onBeforeRouteLeave(() => {
+    if (!generateStore.configIsUpdated) {
+      return true
+    }
     const answer = window.confirm('还未保存，是否离开？')
-    if (!answer) return false
+    if (!answer) {
+      return false
+    }
   })
 </script>
 <style lang="scss" scoped></style>
